@@ -85,3 +85,15 @@ def text_solve(to_user,from_user,context):
     return result
 pass
 # url = 'https://www.zhihu.com/question/46020782/answer/577812256'
+
+def set_log(input,output):
+    """公众号日志记录"""
+    timestr = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    with open('log.txt','a+',encoding="utf-8") as f:
+        f.write("==========================================\n")
+        f.write("time = "+timestr+"\n")
+        f.write("input:\n")
+        f.write(input)
+        f.write("\noutput:\n")
+        f.write(output)
+        f.write("\n==========================================\n")

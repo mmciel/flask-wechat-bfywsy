@@ -62,10 +62,11 @@ def wechat():
             context = xml.find('Content').text
             # 数据传入message_solve进行分析响应
             msg = message_solve.text_solve(from_user,to_user,context)
-            return msg
+
         else:
             pass
-        pass
+        message_solve.set_log(str(xml),str(msg))
+        return msg
     pass
 pass
 if __name__ == '__main__':
