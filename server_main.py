@@ -1,8 +1,9 @@
 """
 微信公众号后台（公众号：并非一无所有）
 author:mmciel
-final update time：2019年2月9日13:02:42
-version：1.0
+final update time：2019年2月9日20:31:28
+version:1.1
+update:增加日志记录功能
 files:
     server_main:flask web、接收与发送用户xml数据、响应用户动作
     message_solve:分析xml数据（响应text、img、语音、视频信息）
@@ -17,7 +18,7 @@ python3 package：
     Flask          1.0.2
     requests       2.21.0
     urllib3        1.24.1
-github：
+github：https://github.com/mmciel/flask-wechat-bfywsy.git
 """
 # -*- coding:utf-8 -*-
 from flask import Flask
