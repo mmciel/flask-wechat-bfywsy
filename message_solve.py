@@ -7,6 +7,8 @@
 # -*- coding:utf-8 -*-
 import re
 import time
+
+from test import ai_chat
 import weiD
 import zhihuD
 import yunD
@@ -80,7 +82,9 @@ def text_solve(to_user,from_user,context):
         pass
     # 不含链接
     else:
-        result = text_message_template.format(to_user, from_user, int(time.time() * 1000), "略略略")
+        """调用聊天机器人敷衍用户"""
+        str = ai_chat.get_chat(context)
+        result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
         pass
     return result
 pass
