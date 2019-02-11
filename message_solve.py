@@ -8,7 +8,7 @@
 import re
 import time
 
-from test import ai_chat
+import ibot
 import weiD
 import zhihuD
 import yunD
@@ -83,7 +83,7 @@ def text_solve(to_user,from_user,context):
     # 不含链接
     else:
         """调用聊天机器人敷衍用户"""
-        str = ai_chat.get_chat(context)
+        str = ibot.get_ibot_reply(to_user,context)
         result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
         pass
     return result

@@ -42,23 +42,31 @@ def get_ibot_reply(user,data):
     parameter_str2 = "&data="
     parameter_str3 = "&ts="
 
+    # 处理时间戳
+    timeStamp = str(int(time.time() * 1000))
+
     # 用户名进行MD5加密
     user = hashlib.md5(user.encode(encoding='UTF-8')).hexdigest()
+    # 通过时间戳构造出sessionId
+    sessionId = hashlib.md5(timeStamp.encode(encoding='UTF-8')).hexdigest()
 
     # 用户名填入json数据包
     json_data["userId"] = user
+    # 填充sessionId
+    json_data["sessionId"] = sessionId
     # 聊天数据填入json数据包
     json_data["body"]["content"] = data
+
     # 生成json串
     json_data = json.dumps(json_data)
     # url code 处理 json串
     json_data = quote(json_data)
-    # 处理时间戳
-    timeStamp = int(time.time()*1000)
     # 构造get请求地址
     url = api_url+parameter_str1+parameter_str2+json_data+parameter_str3+str(timeStamp)
     r = requests.get(url, headers=utl_headers)
 
+    # 声明返回数据字符串
+    reply_data = ""
     # 返回数据分析：   print(r.text)
     '''
     __webrobot_processMsg({"robotId":"webbot","userId":"3de9483d302449cc8ace19a5b11a7c5b","sessionId":"b768443a92e7460a876900638396c59d","type":"openresp","body":{"status":1}});__webrobot_processMsg({"robotId":"webbot","userId":"3de9483d302449cc8ace19a5b11a7c5b","sessionId":"b768443a92e7460a876900638396c59d","type":"updaterobot","body":{"displayName":"小i机器人"}});__webrobot_processMsg({"robotId":"webbot","userId":"3de9483d302449cc8ace19a5b11a7c5b","sessionId":"b768443a92e7460a876900638396c59d","type":"ex","body":{"name":"initconfig","data":{"homeP4Path":"home/index.html","inputPrompt":"请在这里输入您的消息","helpP4Path":"http://www.xiaoi.com","messageDateFormat":"HH:mm:ss","speechAddr":"","dn":"小i机器人","speechEnabled":"false"}}});__webrobot_processMsg({"robotId":"webbot","userId":"3de9483d302449cc8ace19a5b11a7c5b","sessionId":"b768443a92e7460a876900638396c59d","type":"txt","body":{"fontStyle":0,"fontColor":0,"content":"Hi，我是小i机器人，我可以查天气，讲笑话，订机票哦~ 除此之外还有几十项实用好玩的功能哦~ 快来试试吧\n\r\n","emoticons":{}}});__webrobot_processMsg({"robotId":"webbot","userId":"3de9483d302449cc8ace19a5b11a7c5b","sessionId":"b768443a92e7460a876900638396c59d","type":"txt","body":{"fontStyle":0,"fontColor":0,"content":"你好，我是小i机器人，很高兴认识你。\r\n","emoticons":{}}});
@@ -66,19 +74,32 @@ def get_ibot_reply(user,data):
     - 提取json数据并分析：json太多，太慢
     - 正则提取字段（√）
     '''
-    reply_pattern = re.compile(r"\"content\": \".*\"")
+    # print(r.text)
+    reply_pattern = re.compile(r"__webrobot_processMsg\(.*?\)")
     ok = reply_pattern.findall(r.text)
-    if len(ok) != 0:
-        data = '{' + ok[0] + '}'
-        data_dict = json.loads(data)
+
+    # 查到五组数据，在第五组数据中找到content
+    '''查询航班会出bug
+    if len(ok) == 5:
+        # len(ok) = 5  五组数据，信息在第五组
+        # print(ok[4])
+        data5_pattern = re.compile(r"\"content\":\".*?\"")
+        ok = data5_pattern.findall(ok[4])
+        reply_data = ok[0][11:-1]
+        # print(reply_data)
+    '''
+    len_ok = len(ok)-1
+    if len(ok)>0:
+        data5_pattern = re.compile(r"\"content\":\".*?\"")
+        ok = data5_pattern.findall(ok[len_ok])
+        reply_data = ok[0][11:-1]
+        # print("已查询到从北京飞往郑州的机票，请查看右侧信息\\r\\n\\r\\n\\r\\n")
+        reply_data = reply_data.replace("\\"+"r","").replace("\\n","\n").replace("\\u","")
+    # 没查到数据
     else:
-
-
-
-
-
-
-
+         reply_data = "听不懂呢···,不过我会一直努力学习的。"
+    return reply_data
 pass
-get_ibot_reply("123","你好")
+# str = get_ibot_reply("123","机票 北京到郑州")
+# print(str)
 
