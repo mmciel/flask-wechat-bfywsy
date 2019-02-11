@@ -1,8 +1,9 @@
 """
 微信公众号后台（公众号：并非一无所有）
 author:mmciel
-final update time：2019年2月9日20:31:28
-version:1.1
+final update time：2019年2月11日14:18:29
+version:1.2
+update:增加机器人聊天功能
 update:增加日志记录功能
 files:
     server_main:flask web、接收与发送用户xml数据、响应用户动作
