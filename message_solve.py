@@ -32,6 +32,14 @@ pattern_dict = {
     'none' : r'.*',
 }
 
+def subscribe_event(to_user,from_user):
+    str = '''
+    欢迎关注mmciel的订阅号：并非一无所有\n
+    
+    '''
+    result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
+    return result
+
 def text_solve(to_user,from_user,context):
     """
     文本信息处理

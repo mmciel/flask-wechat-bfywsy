@@ -20,6 +20,30 @@ python3 package：
     requests       2.21.0
     urllib3        1.24.1
 github：https://github.com/mmciel/flask-wechat-bfywsy.git
+
+                       _oo0oo_
+                      o8888888o
+                      88" . "88
+                      (| -_- |)
+                      0\  =  /0
+                    ___/`---'\___
+                  .' \\|     |// '.
+                 / \\|||  :  |||// \
+                / _||||| -:- |||||- \
+               |   | \\\  -  /// |   |
+               | \_|  ''\---/''  |_/ |
+               \  .-\__  '-'  ___/-. /
+             ___'. .'  /--.--\  `. .'___
+          ."" '<  `.___\_<|>_/___.' >' "".
+         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+         \  \ `_.   \_ __\ /__ _/   .-` /  /
+     =====`-.____`.___ \_____/___.-`___.-'=====
+                       `=---='
+
+
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+               佛祖保佑         永无BUG
 """
 # -*- coding:utf-8 -*-
 from flask import Flask
@@ -44,13 +68,15 @@ def wechat():
         '''收集post data，根据用户发送的数据类型进行相应的响应'''
         # 解析xml数据
         xml = ET.fromstring(request.data)
+        # print(xml)
         # 获取通用xml数据: 服务器username 用户username 数据类型
         to_user = xml.find('ToUserName').text
         from_user = xml.find('FromUserName').text
         msg_type = xml.find('MsgType').text
         # 数据类型判断
+        # 文本消息
         if msg_type == 'text':
-            # 文本消息
+
             '''
             [开发者文档：文本数据]
             参数	            描述
@@ -64,7 +90,12 @@ def wechat():
             context = xml.find('Content').text
             # 数据传入message_solve进行分析响应
             msg = message_solve.text_solve(from_user,to_user,context)
-
+        # 事件响应类型
+        elif msg_type == 'event':
+            event = xml.find('Event').text
+            # 关注公众号事件
+            if event == 'subscribe':
+                msg = message_solve.subscribe_event(from_user,to_user)
         else:
             pass
         message_solve.set_log(str(xml),str(msg))

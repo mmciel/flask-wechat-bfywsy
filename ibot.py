@@ -99,6 +99,9 @@ def get_ibot_reply(user,data):
     # 没查到数据
     else:
          reply_data = "听不懂呢···,不过我会一直努力学习的。"
+
+    # 处理语料：详情请看右侧页面
+    reply_data.replace("详情请看右侧页面","你应该知道的对吧~")
     return reply_data
 pass
 # str = get_ibot_reply("123","机票 北京到郑州")
