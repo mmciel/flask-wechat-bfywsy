@@ -8,6 +8,7 @@
 import re
 import time
 
+import dict_solve
 import ibot
 import weiD
 import zhihuD
@@ -23,6 +24,8 @@ text_message_template = """
     <Content><![CDATA[{}]]></Content>
 </xml>
 """
+# 从dict_solve中获取主菜单字符串
+menu_template = dict_solve.main_menu
 
 # 正则匹配模式串字典，用于匹配知乎串，微博串，云音乐串
 pattern_dict = {
@@ -33,10 +36,7 @@ pattern_dict = {
 }
 
 def subscribe_event(to_user,from_user):
-    str = '''
-    欢迎关注mmciel的订阅号：并非一无所有\n
-    
-    '''
+    str = '欢迎关注mmciel的个人订阅号：\n并非一无所有\n'+'详细介绍请点击头像查看，回复以下关键词有惊喜~\n'+ menu_template
     result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
     return result
 
@@ -90,9 +90,24 @@ def text_solve(to_user,from_user,context):
         pass
     # 不含链接
     else:
-        """调用聊天机器人敷衍用户"""
-        str = ibot.get_ibot_reply(to_user,context)
-        result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
+        """
+            这里是处理指定消息回复的入口:
+            处理思路：
+            1. 构造关键字字典
+                构造命令字典：例如帮助，内容，功能，资源等。
+                构造数据字典：tool_file.json value_file.json中的字段提取
+            2. 查询字典
+                优先级：命令字典大于数据字典
+            3.反馈
+        """
+        if dict_solve.not_isempty(context):
+            str = dict_solve.get_text(context)
+            result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
+            pass
+        else:
+            """调用聊天机器人敷衍用户"""
+            str = ibot.get_ibot_reply(to_user,context)
+            result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
         pass
     return result
 pass

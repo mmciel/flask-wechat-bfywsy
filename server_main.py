@@ -76,31 +76,37 @@ def wechat():
         # 数据类型判断
         # 文本消息
         if msg_type == 'text':
-
-            '''
-            [开发者文档：文本数据]
-            参数	            描述
-            ToUserName	    开发者微信号
-            FromUserName	发送方帐号（一个OpenID）
-            CreateTime	    消息创建时间 （整型）
-            MsgType	        text
-            Content	        文本消息内容
-            MsgId	        消息id，64位整型
-            '''
             context = xml.find('Content').text
             # 数据传入message_solve进行分析响应
             msg = message_solve.text_solve(from_user,to_user,context)
+            # 用户聊天记录写入日志
+            message_solve.set_log(str(xml), str(msg))
+            return msg
         # 事件响应类型
         elif msg_type == 'event':
             event = xml.find('Event').text
             # 关注公众号事件
             if event == 'subscribe':
                 msg = message_solve.subscribe_event(from_user,to_user)
+                return msg
+            # 取消关注微信公众号，先不做处理
+            elif event== 'unsubscribe':
+                pass
+
         else:
             pass
-        message_solve.set_log(str(xml),str(msg))
-        return msg
     pass
 pass
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=80,debug = True)
+
+'''
+[开发者文档：文本数据]
+参数	            描述
+ToUserName	    开发者微信号
+FromUserName	发送方帐号（一个OpenID）
+CreateTime	    消息创建时间 （整型）
+MsgType	        text
+Content	        文本消息内容
+MsgId	        消息id，64位整型
+'''
