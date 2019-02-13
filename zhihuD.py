@@ -1,5 +1,5 @@
 """
-    传入知乎url，进行解析
+    传入知乎url，返回解析url
     filename：zhihuD.py
     author:mmciel
     time：2019年2月9日16:05:12
@@ -11,9 +11,16 @@ from bs4 import BeautifulSoup
 
 
 def get_download_url(url):
+    """
+    传入知乎url，返回解析url
+    :param url:传入的url
+    :return: 解析后的url
+    """
+    # 发送get请求
     zhihu_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',}
     zhihu_r = requests.get(url, headers=zhihu_headers)
     zhihu_r.encoding = "utf-8"
+
     # 获取标题
     bsObj = BeautifulSoup(zhihu_r.text, 'html.parser')
     title = str(bsObj.title)

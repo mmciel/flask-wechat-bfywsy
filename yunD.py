@@ -1,6 +1,5 @@
 """
     传入网易云音乐url，进行解析
-    filename：yunD.py
     author:mmciel
     time：2019年2月9日16:05:12
 """
@@ -9,15 +8,18 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-"""
-    author:mmciel
-    time:2019年2月9日19:27:15
-"""
 
 def get_download_url(url):
+    """
+    传入网易云音乐url，进行解析
+    :param url: 传入分享链接
+    :return: 解析后的链接
+    """
+    # get请求
     yun_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',}
     yun_r = requests.get(url, headers=yun_headers)
     yun_r.encoding = "utf-8"
+
     # 获取标题
     bsObj = BeautifulSoup(yun_r.text, 'html.parser')
     # print(bsObj.title) 获得网页标题
@@ -27,6 +29,7 @@ def get_download_url(url):
     # print(url[0][1:-1]) 获得标题字符串
     title = title[0][1:-1]
     # print(title)
+
     #获取媒体链接
     yun_pattern = re.compile(r"song/[0-9]{2,}")
     ok = yun_pattern.findall(url)

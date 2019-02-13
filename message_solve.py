@@ -2,7 +2,11 @@
     接收用户发送的数据，处理并打包返回xml
     filename：message_solve.py
     author：mmciel
-    time：2019年2月9日20:31:39
+    final update time：2019年2月13日21:48:01
+    update：更新了好多，封装乱七八多的代码
+    update：机器人回复
+    update：关注事件
+
 """
 # -*- coding:utf-8 -*-
 import re
@@ -39,7 +43,17 @@ def subscribe_event(to_user,from_user):
     str = '欢迎关注mmciel的个人订阅号：\n并非一无所有\n'+'详细介绍请点击头像查看，回复以下关键词有惊喜~\n'+ menu_template
     result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
     return result
+
+
 def parsing_media(url,to_user, from_user):
+    """
+    链接解析工具
+    :param url:链接
+    :param to_user:发送者
+    :param from_user:接受者
+    :return:打包好的xml数据 含已经解析的链接
+    """
+
     # 遍历字典，判断目前是否可解析这个链接
     for key in pattern_dict:
         temp_pattern = pattern_dict[key]
@@ -68,16 +82,22 @@ def parsing_media(url,to_user, from_user):
         if key == 'none':
             result = text_message_template.format(to_user, from_user, int(time.time() * 1000), "链接暂时无法解析")
     return result
+
+
 def text_solve(to_user,from_user,context):
     """
-    文本信息处理
-
-    context是用户‘输入’的所有数据。通过对context的处理，可实现针对性的回复
-    此解析当前分为两种：带链接的；不带链接的；
+    【文本信息处理】
         带链接的：
-            知乎下载；微博下砸；云音乐下载
+            知乎解析；
+            微博解析；
+            云音乐解析；
         不带链接的：
             关键词处理
+            聊天机器人自动回复
+    :param to_user: 发送者
+    :param from_user: 接收者
+    :param context: 内容
+    :return: 可以发送给微信服务器的数据包
     """
     # 判断context是否含有链接
     # url = re.findall(pattern, string)
@@ -86,22 +106,23 @@ def text_solve(to_user,from_user,context):
 
     # xml数据打包字符串
     result = ""
-    # 含有链接
-    if len(url) > 0:
+
+
+    if len(url) > 0:# 含有链接
         result = parsing_media(url, to_user, from_user)
-    # 不含链接
-    else:
-        """
-            这里是处理指定消息回复的入口:
-            处理思路：
-            1. 构造关键字字典
-                构造命令字典：例如帮助，内容，功能，资源等。
-                构造数据字典：tool_file.json value_file.json中的字段提取
-            2. 查询字典
-                优先级：命令字典大于数据字典
-            3.反馈
-        """
+
+    else:# 不含链接
+
+        # 这里是处理指定消息回复的入口:
+        # 处理思路：
+        # 1. 构造关键字字典
+        #     构造命令字典：例如帮助，内容，功能，资源等。
+        #     构造数据字典：tool_file.json value_file.json中的字段提取
+        # 2. 查询字典
+        #     优先级：命令字典大于数据字典
+
         if dict_solve.not_isempty(context):
+            """指定字典回复"""
             str = dict_solve.get_text(context)
             result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
             pass
@@ -112,10 +133,15 @@ def text_solve(to_user,from_user,context):
         pass
     return result
 pass
-# url = 'https://www.zhihu.com/question/46020782/answer/577812256'
-# print(text_solve('1','12','https://www.zhihu.com/question/303976353/answer/577901958'))
+
+
 def set_log(input,output):
-    """公众号日志记录"""
+    """
+    公众号日志记录
+    :param input: 发送者
+    :param output: 接收者
+    :return:
+    """
     timestr = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     with open('log.txt','a+',encoding="utf-8") as f:
         f.write("====================================================================\n")

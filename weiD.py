@@ -1,6 +1,5 @@
 """
     传入微博url，进行解析
-    filename：weiD.py
     author:mmciel
     time：2019年2月9日21:07:39
 """
@@ -10,12 +9,19 @@ import re
 import requests
 
 def get_download_url(url):
+    """
+    传入微博url，进行解析
+    :param url: 传入分享链接
+    :return: 解析后的链接
+    """
+    # get 请求
     weibo_headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"}
     weibo_r = requests.get(url,headers = weibo_headers)
     weibo_context = weibo_r.text
-    # print(weibo_context)
+
     # 获取媒体url
     download_url = ""
+    # 由于资源来源不同，真实的资源来源地址在json中的key有所不同
     video_title = [
         r"\"mp4_hd_mp4\": \".*\"",
         r"\"mp4_ld_mp4\": \".*\"",
@@ -30,7 +36,8 @@ def get_download_url(url):
             data_dict = json.loads(data)
             for key in data_dict:
                 download_url = data_dict[key]
-                break;
+                break
+
     # 获取标题
     weibo_pattern = re.compile(r"\"status_title\": \".*\"")
     ok = weibo_pattern.findall(weibo_context)
