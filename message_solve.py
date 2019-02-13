@@ -39,7 +39,35 @@ def subscribe_event(to_user,from_user):
     str = '欢迎关注mmciel的个人订阅号：\n并非一无所有\n'+'详细介绍请点击头像查看，回复以下关键词有惊喜~\n'+ menu_template
     result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
     return result
-
+def parsing_media(url,to_user, from_user):
+    # 遍历字典，判断目前是否可解析这个链接
+    for key in pattern_dict:
+        temp_pattern = pattern_dict[key]
+        # 匹配成功
+        if len(re.findall(temp_pattern, url[0])) != 0:
+            # 知乎
+            if key == 'zhihu':
+                str = zhihuD.get_download_url(url[0])
+                str = "链接解析结果：" + str[0] + '\n' + str[1]
+                result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
+                # print(result)
+                break
+            # 微博
+            elif key == 'weibo':
+                str = weiD.get_download_url(url[0])
+                str = "链接解析结果：" + str[0] + '\n' + str[1]
+                result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
+                break
+            # 云音乐
+            elif key == 'yunmusic':
+                str = yunD.get_download_url(url[0])
+                str = "链接解析结果：" + str[0] + '\n' + str[1]
+                result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
+                break
+        # 处理结尾（匹配失败）
+        if key == 'none':
+            result = text_message_template.format(to_user, from_user, int(time.time() * 1000), "链接暂时无法解析")
+    return result
 def text_solve(to_user,from_user,context):
     """
     文本信息处理
@@ -60,34 +88,7 @@ def text_solve(to_user,from_user,context):
     result = ""
     # 含有链接
     if len(url) > 0:
-        # 遍历字典，判断目前是否可解析这个链接
-        for key in pattern_dict:
-            temp_pattern = pattern_dict[key]
-            # 匹配成功
-            if len(re.findall(temp_pattern, url[0])) != 0:
-                # 知乎
-                if key == 'zhihu':
-                    str = zhihuD.get_download_url(url[0])
-                    str = "链接解析结果：" + str[0]+'\n'+str[1]
-                    result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
-                    # print(result)
-                    break;
-                # 微博
-                elif key == 'weibo':
-                    str = weiD.get_download_url(url[0])
-                    str = "链接解析结果：" + str[0] + '\n' + str[1]
-                    result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
-                    break;
-                # 云音乐
-                elif key == 'yunmusic':
-                    str = yunD.get_download_url(url[0])
-                    str = "链接解析结果：" + str[0] + '\n' + str[1]
-                    result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
-                    break;
-            # 处理结尾（匹配失败）
-            if key == 'none':
-                result = text_message_template.format(to_user, from_user, int(time.time() * 1000), "链接暂时无法解析")
-        pass
+        result = parsing_media(url, to_user, from_user)
     # 不含链接
     else:
         """
@@ -112,15 +113,16 @@ def text_solve(to_user,from_user,context):
     return result
 pass
 # url = 'https://www.zhihu.com/question/46020782/answer/577812256'
-
+# print(text_solve('1','12','https://www.zhihu.com/question/303976353/answer/577901958'))
 def set_log(input,output):
     """公众号日志记录"""
     timestr = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     with open('log.txt','a+',encoding="utf-8") as f:
-        f.write("==========================================\n")
+        f.write("====================================================================\n")
         f.write("time = "+timestr+"\n")
-        f.write("input:\n")
+        f.write("【input:】\n")
         f.write(input)
-        f.write("\noutput:\n")
+        f.write("【output:】\n")
         f.write(output)
-        f.write("\n==========================================\n")
+        f.write("====================================================================\n")
+

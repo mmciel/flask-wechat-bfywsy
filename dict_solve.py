@@ -22,7 +22,7 @@ emmm。。。\n
 # 菜单命令字典
 main_menu_dict = {
     "帮助": help_menu_str,
-    "内容": "回复以下关键字获取相应类别：\n",
+    "内容": "emmm, >_< 我太菜了,还没有实现这个功能,可以点击头像查看所有文章~\n",# "内容": "回复以下关键字获取相应类别：\n",
     "功能": "回复以下关键字展示相应功能：\n",
     "资源": "回复以下关键字获得相应资源：\n"
 }
@@ -38,6 +38,23 @@ value1_dict = {}
 value2_dict = {}
 value3_dict = {}
 
+def init_dict():
+    global  main_menu_dict
+    global tools_dict
+    global value1_dict
+    global value2_dict
+    global value3_dict
+    main_menu_dict = {
+        "帮助": help_menu_str,
+        "内容": "emmm, >_< 我太菜了,还没有实现这个功能,可以点击头像查看所有文章~\n",  # "内容": "回复以下关键字获取相应类别：\n",
+        "功能": "回复以下关键字展示相应功能：\n",
+        "资源": "回复以下关键字获得相应资源：\n"
+    }
+    tools_dict = {}
+    value1_dict = {}
+    value2_dict = {}
+    value3_dict = {}
+
 def get_value_file():
     # 读取文件并转化为字典
     f = open("value_file.json", encoding='utf-8')
@@ -45,7 +62,7 @@ def get_value_file():
     # 构造第一个字典（实际上是列表，作为下面字典的索引）
     temp_str = ""
     for temp in list(data.keys()):
-        temp_str = temp_str + temp + '\n'
+        temp_str = temp_str + "【" + temp + "】" + '\n'
     main_menu_dict['资源'] = main_menu_dict['资源'] + temp_str
     # print(value1_dict)
     for key in data:
@@ -77,10 +94,13 @@ def get_tool_file():
         pass
     temp_str = ""
     for temp in list(tools_dict.keys()):
-        temp_str = temp_str + temp + "=>>" +tools_dict[temp] + '\n'
+        temp_str = temp_str + "【" + temp + "】" + "=>>" +tools_dict[temp] + '\n'
     main_menu_dict['功能'] = main_menu_dict['功能'] + temp_str
     # print(main_menu_dict['功能'])
     pass
+
+
+
 def not_isempty(text):
     """
     1.读取json数据
@@ -89,6 +109,7 @@ def not_isempty(text):
     :param text: 用户传过来的关键字
     :return: 返回字典中是否有此字段
     """
+    init_dict()
     # 1 2
     get_tool_file()
     get_value_file()
@@ -138,7 +159,7 @@ def get_text(text):
     # print(value1_dict)
     # print(value2_dict)
     # print(value3_dict)
-
+    # print(text)
     if text in main_menu_dict.keys():
         reply_text = get_reply_menu(text)
         # print(reply_text)
@@ -159,7 +180,9 @@ def get_text(text):
 
 
     pass
-not_isempty('')
-get_text('java1')
+# not_isempty('')
+# print(get_text('资源'))
+#
+# print(get_text('内容'))
 
 

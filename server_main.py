@@ -80,7 +80,7 @@ def wechat():
             # 数据传入message_solve进行分析响应
             msg = message_solve.text_solve(from_user,to_user,context)
             # 用户聊天记录写入日志
-            message_solve.set_log(str(xml), str(msg))
+            message_solve.set_log(str(request.data.decode()), str(msg))
             return msg
         # 事件响应类型
         elif msg_type == 'event':

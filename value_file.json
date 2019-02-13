@@ -1,62 +1,54 @@
 {
   "软件工具":{
     "办公":[
-      {"name":"xmind","data":"url:wwwbaidu.com"},
-      {"name":"xmind2","data":"url:wwwbaidu.com"}
+      {"name":"typora","data":"www.baidu.com"},
+      {"name":"everthing","data":"www.baidu.com"}
     ],
     "开发":[
-      {"name":"xmind3","data":"url:wwwbaidu.com"},
-      {"name":"xmind4","data":"url:wwwbaidu.com"}
+      {"name":"notepad++","data":"www.baidu.com"},
+      {"name":"HbuliderX","data":"www.baidu.com"}
     ],
     "学习":[
-      {"name":"xmind5","data":"url:wwwbaidu.com"},
-      {"name":"xmind6","data":"url:wwwbaidu.com"}
+      {"name":"xmind","data":"www.baidu.com"},
+      {"name":"有道云笔记","data":"www.baidu.com"}
     ],
     "效率":[
-      {"name":"xmind7","data":"url:wwwbaidu.com"},
-      {"name":"xmind8","data":"url:wwwbaidu.com"}
+      {"name":"seer","data":"www.baidu.com"},
+      {"name":"wox","data":"www.baidu.com"}
     ]
   },
   "编程资源":{
     "java":[
-      {"name":"java1","data":"url:wwwbaidu.com"},
-      {"name":"java2","data":"url:wwwbaidu.com"}
+      {"name":"刘意java","data":"www.baidu.com"},
+      {"name":"毕向东java","data":"www.baidu.com"}
     ],
     "python":[
-      {"name":"java1","data":"url:wwwbaidu.com"},
-      {"name":"java2","data":"url:wwwbaidu.com"}
+      {"name":"廖雪峰python","data":"www.baidu.com"},
+      {"name":"小甲鱼python","data":"www.baidu.com"}
     ],
     "javaweb":[
-      {"name":"java1","data":"url:wwwbaidu.com"},
-      {"name":"java2","data":"url:wwwbaidu.com"}
-    ],
-    "c":[
-      {"name":"java1","data":"url:wwwbaidu.com"},
-      {"name":"java2","data":"url:wwwbaidu.com"}
-    ],
-    "c++":[
-      {"name":"java1","data":"url:wwwbaidu.com"},
-      {"name":"java2","data":"url:wwwbaidu.com"}
+      {"name":"尚学堂","data":"www.baidu.com"},
+      {"name":"传智","data":"www.baidu.com"}
     ]
   },
   "学习资源":{
     "视频":[
-      {"name":"java1","data":"url:wwwbaidu.com"},
-      {"name":"java2","data":"url:wwwbaidu.com"}
+      {"name":"1","data":"www.baidu.com"},
+      {"name":"2","data":"www.baidu.com"}
     ],
     "书籍":[
-      {"name":"java1","data":"url:wwwbaidu.com"},
-      {"name":"java2","data":"url:wwwbaidu.com"}
+      {"name":"3","data":"www.baidu.com"},
+      {"name":"4","data":"www.baidu.com"}
     ]
   },
   "其他资源":{
     "硬件":[
-      {"name":"java1","data":"url:wwwbaidu.com"},
-      {"name":"java2","data":"url:wwwbaidu.com"}
+      {"name":"5","data":"www.baidu.com"},
+      {"name":"6","data":"www.baidu.com"}
     ],
     "心理学":[
-      {"name":"java1","data":"url:wwwbaidu.com"},
-      {"name":"java2","data":"url:wwwbaidu.com"}
+      {"name":"7","data":"www.baidu.com"},
+      {"name":"8","data":"www.baidu.com"}
     ]
   }
 }
