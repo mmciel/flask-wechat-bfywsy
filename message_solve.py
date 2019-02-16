@@ -148,7 +148,7 @@ def set_log(input,output):
         f.write("time = "+timestr+"\n")
         f.write("【input:】\n")
         f.write(input)
-        f.write("【output:】\n")
+        f.write("\n【output:】\n")
         f.write(output)
         f.write("====================================================================\n")
 
