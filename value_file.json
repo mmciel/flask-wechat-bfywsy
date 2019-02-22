@@ -1,54 +1,66 @@
 {
   "软件工具":{
     "办公":[
-      {"name":"typora","data":"www.baidu.com"},
-      {"name":"everthing","data":"www.baidu.com"}
+      {"name":"null","data":"null"}
     ],
     "开发":[
-      {"name":"notepad++","data":"www.baidu.com"},
-      {"name":"HbuliderX","data":"www.baidu.com"}
+      {"name":"null","data":"null"}
     ],
     "学习":[
-      {"name":"xmind","data":"www.baidu.com"},
-      {"name":"有道云笔记","data":"www.baidu.com"}
+      {"name":"null","data":"null"}
     ],
     "效率":[
-      {"name":"seer","data":"www.baidu.com"},
-      {"name":"wox","data":"www.baidu.com"}
+      {"name":"null","data":"null"}
     ]
   },
   "编程资源":{
     "java":[
-      {"name":"刘意java","data":"www.baidu.com"},
-      {"name":"毕向东java","data":"www.baidu.com"}
+      {"name":"毕向东java","data":"链接：https://pan.baidu.com/s/1Ms8cJdB_8Okd7auaPvxOdQ 提取码：oxpn"},
+      {"name":"传智33期java","data":"链接：https://pan.baidu.com/s/1YJwyrSE2NyQePBNTIaDQdA 提取码：5jcs"}
     ],
     "python":[
-      {"name":"廖雪峰python","data":"www.baidu.com"},
-      {"name":"小甲鱼python","data":"www.baidu.com"}
+      {"name":"pythonweb","data":"链接：https://pan.baidu.com/s/1nqM_K2mXX78t4cP9mD-teg 提取码：sx81"},
+      {"name":"python爬虫","data":"链接：https://pan.baidu.com/s/15CiB4g3hGCCU0iMIw4zVMA 提取码：o7oh"},
+      {"name":"小甲鱼python","data":"链接：https://pan.baidu.com/s/1goNnv1rwyfMY9J4nH2EchQ 提取码：egp8"}
+    ],
+    "C51":[
+      {"name":"新概念C51","data":"链接：https://pan.baidu.com/s/1dALth80SMjPsCPJNNR3DCg 提取码：d9qd"}
+    ],
+    "C#":[
+      {"name":"C#全套","data":"链接：https://pan.baidu.com/s/1fTpA6TPN0UqEzdRoQ26uAw 提取码：bxnk"}
+    ],
+    "go":[
+      {"name":"go入门","data":"链接：https://pan.baidu.com/s/1Qpdtsabm5Owa_BNEs8aIFw 提取码：kee9"}
+    ],
+    "易语言":[
+      {"name":"易语言全套教程及工具","data":"链接：https://pan.baidu.com/s/1fE2XK0mdHf8dUpYEnZM0aw 提取码：f84m"}
+    ],
+    "数据结构":[
+      {"name":"数据结构入门","data":"链接：https://pan.baidu.com/s/1MujBOWw1JtrspbSRnm8Rsw 提取码：8x4t"}
+    ],
+    "前端":[
+      {"name":"前端+bootstrap","data":"链接：https://pan.baidu.com/s/1lwUsdGEMfwRMWf4Jx2L0pQ 提取码：7w8x"}
+    ],
+    "mysql":[
+      {"name":"一头扎进mysql","data":"链接：https://pan.baidu.com/s/18qsNOiwfBkA5DfjLbMbY8w 提取码：bzt9"}
     ],
     "javaweb":[
-      {"name":"尚学堂","data":"www.baidu.com"},
-      {"name":"传智","data":"www.baidu.com"}
+      {"name":"尚学堂javaweb","data":"链接：https://pan.baidu.com/s/1mTQ5zglJduq82hvlRdRzNQ 提取码：s3nr"},
+      {"name":"传智javaweb","data":"链接：https://pan.baidu.com/s/1IVxtyYkNg_tAjTqmdbNgTg 提取码：0uiw"},
+      {"name":"方立勋javaweb","data":"链接：https://pan.baidu.com/s/1QwluX999deUEnPtPs4Da-Q 提取码：n4f6"},
+      {"name":"黑马javaweb","data":"链接：https://pan.baidu.com/s/1BmV-OW9GZ69o74ttxqg0Mw 提取码：xi6a"},
+      {"name":"黑马struts","data":"链接：https://pan.baidu.com/s/1ZmphDIH9lEHPq33sfE9f5g 提取码：ubpn"},
+      {"name":"韩顺平java","data":"链接：https://pan.baidu.com/s/1KmnDx7ZpqQlNtmhxP_zMlQ 提取码：ur5x"}
     ]
   },
   "学习资源":{
-    "视频":[
-      {"name":"1","data":"www.baidu.com"},
-      {"name":"2","data":"www.baidu.com"}
-    ],
-    "书籍":[
-      {"name":"3","data":"www.baidu.com"},
-      {"name":"4","data":"www.baidu.com"}
+    "null":[
+      {"name":"null","data":"null"}
     ]
   },
   "其他资源":{
-    "硬件":[
-      {"name":"5","data":"www.baidu.com"},
-      {"name":"6","data":"www.baidu.com"}
-    ],
-    "心理学":[
-      {"name":"7","data":"www.baidu.com"},
-      {"name":"8","data":"www.baidu.com"}
+    "null":[
+      {"name":"null","data":"null"}
     ]
   }
 }
