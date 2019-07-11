@@ -32,7 +32,7 @@ def text_solve(to_user,from_user,context):
     :return:xml回复包
     """
     # 调用ibot中的爬虫
-    str = ibot.get_ibot_reply(to_user,context)
+    str = ibot.get_ibot_reply(to_user, context)
     # 构造回复包
     result = text_message_template.format(to_user, from_user, int(time.time() * 1000), str)
 

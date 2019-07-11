@@ -89,7 +89,7 @@ def wechat():
             context = xml.find('Content').text
 
             # 数据传入message_solve进行分析响应
-            msg = message_solve.text_solve(from_user,to_user,context)
+            msg = message_solve.text_solve(from_user, to_user, context)
 
             # 用户聊天记录写入日志
             message_solve.set_log(str(request.data.decode()), str(msg))
@@ -99,7 +99,7 @@ def wechat():
 
             # 关注公众号事件
             if event == 'subscribe':
-                msg = message_solve.subscribe_event(from_user,to_user)
+                msg = message_solve.subscribe_event(from_user, to_user)
                 return msg
             # 取消关注微信公众号，先不做处理
             elif event== 'unsubscribe':

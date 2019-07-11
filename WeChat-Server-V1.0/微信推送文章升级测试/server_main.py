@@ -50,7 +50,7 @@ def wechat():
             context = xml.find('Content').text
 
             # 数据传入message_solve进行分析响应
-            msg = message_solve.text_solve(from_user,to_user,context)
+            msg = message_solve.text_solve(from_user, to_user, context)
 
             # 通过return可直接把xml回复包返回给微信，用户将看到了回复包中的text
             return msg
