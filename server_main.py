@@ -41,7 +41,7 @@ def wechat():
             # 文本消息
 
             # 创建文本消息对象
-            user_mess_text(
+            message = user_mess_text(
                 xml_message_data.find('ToUserName').text,
                 xml_message_data.find('FromUserName').text,
                 xml_message_data.find('CreateTime').text,
@@ -49,13 +49,23 @@ def wechat():
                 xml_message_data.find('Context').text,
                 xml_message_data.find('MsgId').text
             )
+            # 解析文本消息对象
 
-        elif message_type == 'event':
-            # 事件响应类型
-        elif message_type == 'image'：
-            # 图片类型
-        elif message_type == 'voice':
-            # 语音类型
-        else：
-            # 其他类型
-        pass
+
+        # elif message_type == 'event':
+        #     # 事件响应类型
+        # pass
+        # elif message_type == 'image'：
+        #     # 图片类型
+        # pass
+        # elif message_type == 'voice':
+        #     # 语音类型
+        # pass
+        # else：
+        #     # 其他类型
+        # pass
+
+
+# 启动~
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=80,debug = True)

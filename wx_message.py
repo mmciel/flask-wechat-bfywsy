@@ -3,6 +3,7 @@
  time:2019-7-12 09:45:15
  消息对象
 """
+import re
 
 
 class user_mess_text(object):
@@ -25,6 +26,24 @@ class user_mess_text(object):
         self.MsgType = MsgType
         self.Context = Context
         self.MsgId = MsgId
+
+    def parse(self):
+        """
+            文本消息解析
+            带链接消息
+            纯文本消息
+            混合消息
+        :return:
+        """
+        # 尝试取得链接
+        url_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+        url = re.findall(url_pattern, self.Context)
+
+        # 含有链接
+        if len(url) > 0:
+            # 送入链接解析对象
+        else：
+            # 调用消息字典接口
 
 
 class user_mess_img(object):
