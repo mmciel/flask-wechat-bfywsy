@@ -4,6 +4,9 @@
  消息对象
 """
 import re
+import time
+
+import message_dict
 
 
 class user_mess_text(object):
@@ -38,12 +41,33 @@ class user_mess_text(object):
         # 尝试取得链接
         url_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
         url = re.findall(url_pattern, self.Context)
-
+        response_text = "没有明白你的意思呢~"
         # 含有链接
         if len(url) > 0:
             # 送入链接解析对象
-        else：
+            
+            print(url)
+        else:
             # 调用消息字典接口
+            response_text = message_dict.message_link.get_value('self.Context')
+
+        # 生成回复信息
+        response_xml = self.create_response_xml(response_text)
+        return response_xml
+
+    def create_response_xml(self, context):
+
+        text_template = """
+        <xml>
+            <ToUserName><![CDATA[{}]]></ToUserName>
+            <FromUserName><![CDATA[{}]]></FromUserName>
+            <CreateTime>{}</CreateTime>
+            <MsgType><![CDATA[text]]></MsgType>
+            <Content><![CDATA[{}]]></Content>
+        </xml>
+        """
+        response_xml = text_template.format(self.ToUserName, self.FromUserName, int(time.time() * 1000), context)
+        return response_xml
 
 
 class user_mess_img(object):

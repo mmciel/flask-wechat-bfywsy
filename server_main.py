@@ -11,6 +11,7 @@ from flask import request
 import xml.etree.ElementInclude as ET
 
 import check_token
+import message_dict
 from wx_message import user_mess_img
 from wx_message import user_mess_text
 from wx_message import user_mess_voice
@@ -68,4 +69,7 @@ def wechat():
 
 # 启动~
 if __name__ == '__main__':
+    # 开启数据库
+    message_dict.link_massage = message_dict()
+    # 开启服务器
     app.run(host="0.0.0.0", port=80,debug = True)

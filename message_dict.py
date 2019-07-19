@@ -6,6 +6,8 @@
 
 import pymysql
 
+# message_dict连接
+link_massage = None
 
 class message_dict(object):
     def __init__(self):
@@ -13,13 +15,14 @@ class message_dict(object):
         self.cursor = self.conn.cursor()
 
     def get_value(self, kkey):
-        sql = 'select * from messagedict where (kkey = "%s")' % kkey
+        sql = 'select * from messagedict where kkey = "%s"' % kkey
         self.cursor.execute(sql)
-        print(self.cursor)
-        for d in self.cursor:
-            print(d)
-        return self.cursor
+        # print(self.cursor)
+        # 从查询结果中抽取响应的回复文本
+        for item in self.cursor:
+            return item[1]
+
 
 
 d = message_dict()
-d.get_value('你好')
+print(d.get_value('你好'))
